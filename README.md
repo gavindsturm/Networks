@@ -1,6 +1,6 @@
 Demo Video: 
 Group Members:
-  -Me (Gavin Sturm)
+  -Me (Gavin Sturm) 
 
 How to Run:
   -Download the files to a directory on your computer
