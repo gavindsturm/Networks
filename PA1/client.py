@@ -5,7 +5,7 @@ def print_board(board):
     for row in board:
         print(' '.join(row))
     print()
-
+#1
 def get_guess():
     while True:
         try:
