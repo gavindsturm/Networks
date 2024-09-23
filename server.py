@@ -5,7 +5,6 @@ print("Server is starting")
 port = 9000
 host = socket.gethostname()
 
-#bind socket
 serverSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 serverSocket.bind( (host, port) )
 
