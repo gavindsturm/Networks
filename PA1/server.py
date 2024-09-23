@@ -55,10 +55,10 @@ def handle_client_connection(client_socket, board, ship_locations):
                 else:
                     client_socket.sendall(b'Miss')
                 
-                # Check for game over
+                
                 if hits == total_ship_cells:
                     client_socket.sendall(b'Game Over')
-                    print("All ships sunk! Game over!")  # Print on the server
+                    print("All ships sunk! Game over!")  
                     break
             else:
                 client_socket.sendall(b'Invalid')
@@ -81,7 +81,7 @@ def main(port):
             client_socket, addr = server_socket.accept()
             print(f"Connection from {addr}")
             handle_client_connection(client_socket, board, ship_locations)
-            break  # Exit after one game
+            break  
     finally:
         server_socket.close()
 
