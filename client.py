@@ -19,33 +19,26 @@ def get_guess():
             print("Invalid input. Please enter numeric values.")
 
 def main(server_ip, server_port):
-    # Create a TCP/IP socket
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     
-    # Connect the socket to the server
     client_socket.connect((server_ip, server_port))
     print(f"Connected to server at {server_ip}:{server_port}")
 
-    # Initialize board and guesses counter
     board = [[' ' for _ in range(6)] for _ in range(6)]
     guesses = 0
     total_ships = 0
     sunk_ships = 0
-    ship_symbols = {'A': 4, 'B': 3, 'C': 2}  # Ship symbols and lengths
+    ship_symbols = {'A': 4, 'B': 3, 'C': 2}
 
     while True:
-        # Print current board status
         print_board(board)
 
-        # Get user guess
         row, col = get_guess()
         guess = f"{row} {col}"
 
-        # Send guess to the server
         client_socket.sendall(guess.encode())
         response = client_socket.recv(1024).decode()
 
-        # Handle the server response
         if response == 'Hit':
             print("Hit!")
             board[row][col] = 'X'
@@ -60,15 +53,10 @@ def main(server_ip, server_port):
             print("Unexpected response from server.")
             break
         
-        # Check for game over condition
-        # For simplicity, this example doesn't actually track ship positions.
-        # In a full implementation, you would track ship locations and check if all have been sunk.
-        # Here we assume the game ends after a certain number of guesses for demo purposes.
-        if guesses >= 30:  # Example condition for game over
+        if guesses >= 30:  
             print(f"Game over! Total guesses: {guesses}")
             break
 
-    # Close the connection
     client_socket.close()
 
 if __name__ == "__main__":
