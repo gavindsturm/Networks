@@ -20,22 +20,16 @@ def get_guess():
 
 def main(server_ip, server_port):
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    
     client_socket.connect((server_ip, server_port))
     print(f"Connected to server at {server_ip}:{server_port}")
 
     board = [[' ' for _ in range(6)] for _ in range(6)]
     guesses = 0
-    total_ships = 0
-    sunk_ships = 0
-    ship_symbols = {'A': 4, 'B': 3, 'C': 2}
 
     while True:
         print_board(board)
-
         row, col = get_guess()
         guess = f"{row} {col}"
-
         client_socket.sendall(guess.encode())
         response = client_socket.recv(1024).decode()
 
@@ -49,12 +43,11 @@ def main(server_ip, server_port):
             guesses += 1
         elif response == 'Invalid':
             print("Invalid guess. Try again.")
+        elif response == 'Game Over':
+            print("All ships sunk! Game over!")
+            break
         else:
             print("Unexpected response from server.")
-            break
-        
-        if guesses >= 30:  
-            print(f"Game over! Total guesses: {guesses}")
             break
 
     client_socket.close()
