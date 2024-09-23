@@ -1,5 +1,3 @@
-# Server Program
-
 import socket
 import random
 
@@ -17,7 +15,6 @@ print("Server is ready for connections")
 
 serverSocket.listen(1)
 
-#accept new connection(s)
 connection, addr = serverSocket.accept()
 
 while True:
