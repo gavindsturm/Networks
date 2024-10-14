@@ -1,5 +1,6 @@
 PA2 Gavin Sturm: 
-To run the program you must download both files and have the CSV in the same directory. Once downloaded you will start by booting up a server with the command in the video. 
+To run the program you must download both files and have the CSV in the same directory. 
+Once downloaded you will start by booting up a server with the command in the video. 
 You will then open a new powershell and make sure yu are in the same directory. 
 You will then run the client program with the command in the video. 
 Then enter a sentence to translate. 
